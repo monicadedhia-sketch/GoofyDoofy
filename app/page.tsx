@@ -26,7 +26,7 @@ const QUESTIONS = [
 ];
 type Phase="setup"|"pass"|"choose"|"judge"|"reveal"|"finished";
 type Pick={player:number;card:string};
-const deal=(used:string[]=[])=>[...DECK].filter(c=>!used.includes(c)).sort(()=>Math.random()-.5).slice(0,4);
+const deal=(used:string[]=[])=>[...DECK].filter(c=>!used.includes(c)).sort(()=>Math.random()-.5).slice(0,6);
 
 export default function Home(){
  const [players,setPlayers]=useState(["Monica","Makarand","Mira"]),[turnsEach,setTurnsEach]=useState(2),[phase,setPhase]=useState<Phase>("setup"),[turn,setTurn]=useState(0),[step,setStep]=useState(0),[hand,setHand]=useState<string[]>([]),[usedCards,setUsedCards]=useState<string[]>([]),[picks,setPicks]=useState<Pick[]>([]),[scores,setScores]=useState([0,0,0]),[ranking,setRanking]=useState<Pick[]>([]);
