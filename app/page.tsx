@@ -7,7 +7,7 @@ type Pick={player:number;card:string};
 const deal=(used:string[]=[])=>[...DECK].filter(c=>!used.includes(c)).sort(()=>Math.random()-.5).slice(0,6);
 
 export default function Home(){
- const [players,setPlayers]=useState(["Monica","Husband","Meera"]),[turnsEach,setTurnsEach]=useState(2),[phase,setPhase]=useState<Phase>("setup"),[turn,setTurn]=useState(0),[step,setStep]=useState(0),[hand,setHand]=useState<string[]>([]),[picks,setPicks]=useState<Pick[]>([]),[scores,setScores]=useState([0,0,0]),[ranking,setRanking]=useState<Pick[]>([]);
+ const [players,setPlayers]=useState(["Monica","Makarand","Mira"]),[turnsEach,setTurnsEach]=useState(2),[phase,setPhase]=useState<Phase>("setup"),[turn,setTurn]=useState(0),[step,setStep]=useState(0),[hand,setHand]=useState<string[]>([]),[picks,setPicks]=useState<Pick[]>([]),[scores,setScores]=useState([0,0,0]),[ranking,setRanking]=useState<Pick[]>([]);
  const judge=turn%players.length,choosers=useMemo(()=>players.map((_,i)=>i).filter(i=>i!==judge),[judge,players]),chooser=choosers[step],total=players.length*turnsEach;
  const start=()=>{setScores(players.map(()=>0));setTurn(0);setPicks([]);setStep(0);setPhase("pass")};
  const choose=(card:string)=>{const next=[...picks,{player:chooser,card}];setPicks(next);if(step<choosers.length-1){setStep(step+1);setPhase("pass")}else setPhase("judge")};
@@ -24,6 +24,6 @@ export default function Home(){
   {phase==="judge"&&<section className="game-screen centered"><div className="eyebrow">{players[judge]}, you’re the Whoozit</div><h2>Which do you like <em>best?</em></h2><p>Your favorite earns 2 points. The other earns 1.</p><div className="judge-cards">{picks.map(p=><button key={p.card} onClick={()=>rank(p)}><span>♥</span><strong>{p.card}</strong><small>THIS IS MY FAVORITE</small></button>)}</div></section>}
   {phase==="reveal"&&<section className="game-screen centered reveal-screen"><div className="eyebrow">The favorites are in</div><h2>{players[judge]} has <em>spoken!</em></h2><div className="podium"><div className="rank first"><b>1</b><span><small>FAVORITE · +2 PTS</small><strong>{ranking[0]?.card}</strong><em>Played by {players[ranking[0]?.player]}</em></span></div><div className="rank second"><b>2</b><span><small>RUNNER-UP · +1 PT</small><strong>{ranking[1]?.card}</strong><em>Played by {players[ranking[1]?.player]}</em></span></div></div><button className="primary compact" onClick={next}>{turn+1>=total?"See final scores":"Next turn"} <span>→</span></button></section>}
   {phase==="finished"&&<section className="game-screen centered finish-screen"><div className="confetti">✦ · ✦ · ✦</div><div className="eyebrow">That’s the game</div><h2>{winners.join(" & ")} {winners.length>1?"know you best!":"knows you best!"}</h2><div className="final-scores">{players.map((p,i)=><div key={p} className={scores[i]===high?"winner":""}><span className={`avatar avatar-${i}`}>{p.charAt(0)}</span><strong>{p}</strong><b>{scores[i]} <small>pts</small></b></div>)}</div><button className="primary compact" onClick={start}>Play again <span>↻</span></button><button className="text-button" onClick={reset}>Change players</button></section>}
-  <footer>Made for Monica, Meera & family <span>♥</span></footer>
+  <footer>Made for Monica, Makarand & Mira <span>♥</span></footer>
  </main>
 }
