@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Favorite Things — How well do you know each other?",
-  description: "A warm, pass-and-play family game about knowing what your favorite people love.",
+  title: "Goofy Doofy M3 — How well do you know each other?",
+  description: "A funny, pass-and-play game for Monica, Makarand, and Mira.",
   icons: {
     icon: "/favicon.svg",
     shortcut: "/favicon.svg",

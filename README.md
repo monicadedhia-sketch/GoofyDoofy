@@ -1,4 +1,4 @@
-# Favorite Things
+# Goofy Doofy M3
 
 A private, pass-and-play family game inspired by guessing and ranking each other's favorite things.
 
